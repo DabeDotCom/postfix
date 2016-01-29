@@ -93,7 +93,10 @@ extern const char *str_tls_level(int);
 #define OpenSSL_version_num SSLeay
 #define OpenSSL_version SSLeay_version
 #define OPENSSL_VERSION SSLEAY_VERSION
-#define X509_up_ref(x) CRYPTO_add(&((x)->references), 1, CRYPTO_LOCK_X509)
+#define X509_up_ref(x) \
+	CRYPTO_add(&((x)->references), 1, CRYPTO_LOCK_X509)
+#define EVP_PKEY_up_ref(k) \
+	CRYPTO_add(&((k)->references), 1, CRYPTO_LOCK_EVP_PKEY)
 #endif
 
 /* SSL_CIPHER_get_name() got constified in 0.9.7g */
